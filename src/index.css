@@ -1,16 +1,38 @@
 @import "tailwindcss";
 
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@theme {
+  --color-primary: #8b5a2b;
+  --color-primary: #8b5a2b;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #ffffff;
+  /* Variaciones claras (para hover, focus, etc.) */
+  --color-primary-light: #a47341;
+  --color-primary-lighter: #c19667;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* Variaciones oscuras (para bordes, sombras, etc.) */
+  --color-primary-dark: #724721;
+  --color-primary-darker: #593618;
+
+  /* Colores complementarios */
+  --color-accent: #2b5a8b; /* Azul complementario */
+  --color-accent-hover: #3d6ca0;
+
+  /* Colores neutros para combinar */
+  --color-neutral-100: #f8f5f2;
+  --color-neutral-200: #e9e0d7;
+  --color-neutral-300: #d3c5b8;
+  --color-neutral-400: #a8978a;
+  --color-neutral-500: #7d6b5d;
+
+  /* Colores para texto */
+  --color-text: #362c21;
+  --color-text-light: #67594a;
+  --color-text-on-dark: #f8f5f2;
+}
+
+.link-primary {
+  @apply bg-primary hover:bg-primary-light text-white rounded-lg px-4 py-2;
+}
+
+.link-link {
+  @apply text-text text-base hover:text-primary-light;
 }

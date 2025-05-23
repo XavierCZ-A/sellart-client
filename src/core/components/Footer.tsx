@@ -56,12 +56,9 @@ export const Footer: React.FC = () => {
             <h4 className="font-semibold text-lg mb-4">Enlaces</h4>
             <ul className="space-y-2">
               <li>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
+                <p className="text-gray-300 hover:text-white transition-colors">
                   Inicio
-                </a>
+                </p>
               </li>
               <li>
                 <a

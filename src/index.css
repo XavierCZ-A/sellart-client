@@ -2,7 +2,6 @@
 
 @theme {
   --color-primary: #8b5a2b;
-  --color-primary: #8b5a2b;
 
   /* Variaciones claras (para hover, focus, etc.) */
   --color-primary-light: #a47341;
@@ -27,6 +26,8 @@
   --color-text: #362c21;
   --color-text-light: #67594a;
   --color-text-on-dark: #f8f5f2;
+
+  --font-display: "Playfair Display", serif;
 }
 
 .link-primary {

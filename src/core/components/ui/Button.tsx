@@ -1,21 +1,31 @@
-import { Button as AntdButton } from "antd";
+import { Button as AntdButton, ConfigProvider } from "antd";
 
 interface BaseComponentProps {
   className?: string;
   children?: React.ReactNode;
 }
 
-type ButtonVariant = "primary" | "default" | "dashed" | "text";
+type ButtonType = "primary" | "default" | "dashed" | "text" | "link";
 type ButtonSize = "large" | "small";
 type ButtonShape = "default" | "circle" | "round";
+type ButtonVariant =
+  | "solid"
+  | "outlined"
+  | "dashed"
+  | "filled"
+  | "text"
+  | "link";
 
 interface ButtonProps extends BaseComponentProps {
-  type?: ButtonVariant;
+  type?: ButtonType;
   shape?: ButtonShape;
   size?: ButtonSize;
   loading?: boolean;
   disabled?: boolean;
   icon?: React.ReactNode;
+  ghost?: boolean;
+  variant?: ButtonVariant;
+  className?: string;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
@@ -26,18 +36,37 @@ export const Button: React.FC<ButtonProps> = ({
   className,
   children,
   icon,
+  ghost,
+  variant,
   ...props
 }) => {
   return (
-    <AntdButton
-      type={type}
-      shape={shape}
-      size={size}
-      className={className}
-      icon={icon}
-      {...props}
+    <ConfigProvider
+      theme={{
+        components: {
+          Button: {
+            colorPrimary: "#8b5a2b",
+            colorPrimaryHover: "#a47341",
+            colorPrimaryActive: "#8b5a2b",
+            colorPrimaryText: "#000000",
+            colorPrimaryBorder: "#8b5a2b",
+            colorPrimaryBg: "#8b5a2b",
+          },
+        },
+      }}
     >
-      {children}
-    </AntdButton>
+      <AntdButton
+        ghost={ghost}
+        type={type}
+        shape={shape}
+        size={size}
+        className={className}
+        icon={icon}
+        variant={variant}
+        {...props}
+      >
+        {children}
+      </AntdButton>
+    </ConfigProvider>
   );
 };

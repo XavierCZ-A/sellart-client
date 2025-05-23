@@ -6,7 +6,6 @@ import {
 } from "@ant-design/icons";
 import { Input } from "antd";
 import { Link } from "./ui/Link";
-import Search from "antd/es/input/Search";
 import { Button } from "./ui/Button";
 import { Dropdown } from "./ui/Dropdown";
 
@@ -63,20 +62,6 @@ const Header: React.FC = () => {
               Iniciar sesión
             </Link>
           </div>
-        </div>
-      </div>
-
-      {/* Mobile Search */}
-      <div className="md:hidden px-4 pb-3">
-        <div className="relative w-full">
-          <div className="absolute inset-y-0 left-0 flex items-center pl-3">
-            <SearchOutlined className="h-4 w-4 text-gray-500" />
-          </div>
-          <Search
-            placeholder="Buscar productos"
-            suffix={suffix}
-            style={{ width: 200 }}
-          />
         </div>
       </div>
     </header>

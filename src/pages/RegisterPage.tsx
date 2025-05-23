@@ -1,3 +1,5 @@
-export const RegisterPage: React.FC = () => {
+const RegisterPage: React.FC = () => {
   return <div>RegisterPage</div>;
 };
+
+export default RegisterPage;

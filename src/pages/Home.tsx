@@ -1,9 +1,11 @@
-import { ProductSection } from "../core/components/ProductSection";
+import { ProductSection } from "../features/product/components/ProductSection";
 
-export const Home = () => {
+const Home = () => {
   return (
     <div>
       <ProductSection />
     </div>
   );
 };
+
+export default Home;

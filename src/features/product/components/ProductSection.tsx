@@ -1,4 +1,4 @@
-import { Link } from "./ui/Link";
+import { Link } from "../../../core/components/ui/Link";
 
 export const ProductSection: React.FC = () => {
   return (

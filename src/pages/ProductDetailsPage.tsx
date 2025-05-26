@@ -18,13 +18,15 @@ const allProducts: Product[] = [
     id: 1,
     name: "Florero de cerámica artesanal",
     price: 42.99,
-    image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9",
+    image: "",
     rating: 4.8,
     description:
       "Elegante florero de cerámica hecho a mano por artesanos locales. Cada pieza es única con pequeñas variaciones que destacan su carácter artesanal. Perfecto para decorar cualquier espacio de tu hogar",
     seller: "CeramicaCreativa",
     stock: 10,
     isNew: true,
+    isFeatured: false,
+    additionalImages: [],
   },
 ];
 
@@ -33,6 +35,7 @@ export const ProductDetailsPage = () => {
   const product = allProducts.find((product) => product.id === Number(id));
   const [quantity, setQuantity] = useState(1);
   const [isFavorite, setIsFavorite] = useState(false);
+  const [mainImage, setMainImage] = useState(product?.image); // Estado para la imagen principal
 
   const handleAddToCart = () => {
     console.log("add to cart");
@@ -54,14 +57,32 @@ export const ProductDetailsPage = () => {
   };
 
   return (
-    <main className="container mx-auto px-4 py-6 m-5 border border-red-200 shadow-md rounded-lg">
+    <main className="container mx-auto px-4 py-6 m-5 shadow-md rounded-lg">
       <section className="flex flex-col md:flex-row gap-4">
-        <div className="w-full md:w-1/2">
+        <div className="w-full md:w-1/2 grid gap-4">
           <img
-            src={product?.image}
+            src={mainImage}
             alt={product?.name}
-            className="w-full h-full object-cover"
+            className="w-full h-96 rounded-md object-cover"
           />
+          {product?.additionalImages &&
+            product?.additionalImages.length > 0 && (
+              <div className="flex space-x-2 overflow-x-auto pb-2">
+                {product?.additionalImages.map((img, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setMainImage(img)}
+                    className={`w-20 h-20 rounded-md overflow-hidden flex-shrink-0 border-2 ${mainImage === img ? "border-primary" : "border-transparent"}`}
+                  >
+                    <img
+                      src={img}
+                      alt={`${product.name} - vista ${idx + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
         </div>
         <div className="flex flex-col w-full md:w-1/2">
           {/* Seller and rating */}
@@ -89,12 +110,12 @@ export const ProductDetailsPage = () => {
           </div>
 
           {/* Product actions */}
-          <hr className="my-4 border-gray-200" />
-          <div className="mt-auto border-t pt-6">
+          <div className="mt-auto border-t border-gray-200 pt-6">
+            {/* Quantity */}
             {product?.stock && product?.stock > 0 ? (
-              <>
+              <div>
                 <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center border rounded-md">
+                  <div className="flex items-center rounded-md">
                     <Button
                       ghost
                       size="small"
@@ -117,6 +138,8 @@ export const ProductDetailsPage = () => {
                     {product.stock} disponibles
                   </span>
                 </div>
+
+                {/* Add to cart and wishlist */}
                 <div className="flex gap-2">
                   <Button
                     className="flex-1"
@@ -139,7 +162,7 @@ export const ProductDetailsPage = () => {
                     <ShareAltOutlined style={{ fontSize: "20px" }} />
                   </Button>
                 </div>
-              </>
+              </div>
             ) : (
               <Button disabled className="w-full">
                 Agotado

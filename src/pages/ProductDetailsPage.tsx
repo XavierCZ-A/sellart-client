@@ -1,5 +1,4 @@
 import { useParams } from "react-router";
-import type { Product } from "../features/product/types/product";
 import { Link } from "../core/components/ui/Link";
 import { Rate } from "../core/components/ui/Rate";
 import { Button } from "../core/components/ui/Button";
@@ -11,31 +10,16 @@ import {
   ShareAltOutlined,
   ShoppingCartOutlined,
 } from "@ant-design/icons";
-import { useState } from "react";
-
-const allProducts: Product[] = [
-  {
-    id: 1,
-    name: "Florero de cerámica artesanal",
-    price: 42.99,
-    image: "",
-    rating: 4.8,
-    description:
-      "Elegante florero de cerámica hecho a mano por artesanos locales. Cada pieza es única con pequeñas variaciones que destacan su carácter artesanal. Perfecto para decorar cualquier espacio de tu hogar",
-    seller: "CeramicaCreativa",
-    stock: 10,
-    isNew: true,
-    isFeatured: false,
-    additionalImages: [],
-  },
-];
+import { useEffect, useState } from "react";
+import instance from "../core/api/instance";
+import type { Product } from "../features/product/types/product";
 
 export const ProductDetailsPage = () => {
   const { id } = useParams();
-  const product = allProducts.find((product) => product.id === Number(id));
   const [quantity, setQuantity] = useState(1);
   const [isFavorite, setIsFavorite] = useState(false);
-  const [mainImage, setMainImage] = useState(product?.image);
+  const [product, setProduct] = useState<Product | null>(null);
+  const [mainImage, setMainImage] = useState(product?.image_url?.[0]);
 
   const handleAddToCart = () => {
     console.log("add to cart");
@@ -54,6 +38,22 @@ export const ProductDetailsPage = () => {
     if (newQuantity >= 1 && newQuantity <= (product?.stock || 10)) {
       setQuantity(newQuantity);
     }
+  };
+
+  useEffect(() => {
+    if (product?.image_url?.[0]) {
+      setMainImage(product.image_url[0]);
+    }
+  }, [product]);
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const fetchProducts = async () => {
+    const { data } = await instance.get(`/products/${id}`);
+    console.log(data);
+    setProduct(data);
   };
 
   return (

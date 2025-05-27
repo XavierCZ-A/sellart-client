@@ -27,11 +27,6 @@ export const AppRoute = () => {
           <Route path="products" element={<ProductsPage />} />
           <Route path="product/:id" element={<ProductDetailsPage />} />
           <Route path="product/new" element={<ProductFormPage />} />
-          {/* Ruta dinámica para detalles del producto */}
-          {/* Agrega más rutas aquí que necesiten el Layout */}
-          {/* Ejemplo de una ruta que NO usa el Layout (por ejemplo, una página de login/registro si la tuvieras)
-        <Route path="login" element={<LoginPage />} /> 
-        */}
         </Route>
 
         <Route path="/login" element={<LoginPage />} />

@@ -3,29 +3,24 @@ import { Badge, Card } from "antd";
 import { useState } from "react";
 import { Link } from "../../../core/components/ui/Link";
 import { Button } from "../../../core/components/ui/Button";
+import type { Product } from "../types/product";
 
 interface ProductCardProps {
-  product: {
-    id: number;
-    name: string;
-    price: number;
-    image: string;
-    rating: number;
-    seller: string;
-    isNew?: boolean;
-  };
+  product: Product;
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
   const handleFavoriteClick = (e: React.MouseEvent) => {
+    // TODO: Agregar a favoritos en la base de datos
     console.log("Agregar a favoritos");
     e.stopPropagation();
     setIsFavorite(!isFavorite);
   };
 
   const handleAddToCart = (e: React.MouseEvent) => {
+    // TODO: Agregar al carrito en la base de datos
     e.stopPropagation();
     console.log("Agregar al carrito");
   };
@@ -37,7 +32,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <div className="relative">
           <img
             alt="example"
-            src={product.image}
+            src={product.image_url?.[0]}
             className="w-full rounded-t-lg h-48 object-cover"
           />
 

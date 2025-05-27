@@ -35,7 +35,7 @@ export const ProductDetailsPage = () => {
   const product = allProducts.find((product) => product.id === Number(id));
   const [quantity, setQuantity] = useState(1);
   const [isFavorite, setIsFavorite] = useState(false);
-  const [mainImage, setMainImage] = useState(product?.image); // Estado para la imagen principal
+  const [mainImage, setMainImage] = useState(product?.image);
 
   const handleAddToCart = () => {
     console.log("add to cart");

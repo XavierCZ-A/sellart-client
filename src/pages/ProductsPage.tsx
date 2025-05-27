@@ -10,6 +10,9 @@ const allProducts: Product[] = [
     rating: 4.8,
     seller: "CeramicaCreativa",
     isNew: true,
+    stock: 10,
+    description: "Florero de cerámica artesanal",
+    additionalImages: [],
   },
 ];
 

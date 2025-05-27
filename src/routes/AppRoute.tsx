@@ -4,6 +4,7 @@ import { MainLayout } from "../core/layouts/MainLayout";
 import { Suspense, lazy } from "react";
 import Home from "../pages/Home";
 import { ProductDetailsPage } from "../pages/ProductDetailsPage";
+import { ProductFormPage } from "../pages/ProductFormPage";
 
 const ProductsPage = lazy(() => import("../pages/ProductsPage"));
 const LoginPage = lazy(() => import("../pages/LoginPage"));
@@ -21,10 +22,11 @@ export const AppRoute = () => {
       <Routes>
         <Route path="/" element={<MainLayout />}>
           {/* Rutas que usan el Layout (Header y Footer) */}
-          <Route index element={<Home />} />{" "}
+          <Route index element={<Home />} />
           {/* Ruta para la página de inicio */}
           <Route path="products" element={<ProductsPage />} />
           <Route path="product/:id" element={<ProductDetailsPage />} />
+          <Route path="product/new" element={<ProductFormPage />} />
           {/* Ruta dinámica para detalles del producto */}
           {/* Agrega más rutas aquí que necesiten el Layout */}
           {/* Ejemplo de una ruta que NO usa el Layout (por ejemplo, una página de login/registro si la tuvieras)
